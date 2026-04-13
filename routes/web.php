@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/products', [Product_controller::class, 'index'])->name('products.index');
+    Route::get('/products/create', [Product_controller::class, 'create'])->name('products.add');
     Route::get('/stocks', [Stock_controller::class, 'index'])->name('stocks.index');
     Route::get('/suppliers', [Supplier_controller::class, 'index'])->name('suppliers.index');
 });
