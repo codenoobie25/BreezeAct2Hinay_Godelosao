@@ -13,13 +13,25 @@ class Product_controller extends Controller
         return view('Product_view', compact('products'));
     }
 
-    public function create(Request $request)
+    public function create()
     {
-        Product::create([
-            'product_name' => $request->productname,
-            'price' => $request->productprice,
-            'status' => $request->status
+        return view('ADDproduct_view');
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'product_name' => ['required', 'string', 'max:255'],
+            'price' => ['required', 'numeric', 'min:0'],
+            'status' => ['required', 'string', 'max:255'],
         ]);
-        return redirect('/products');
+
+        Product::create([
+            'product_name' => $validated['product_name'],
+            'price' => $validated['price'],
+            'status' => $validated['status'],
+        ]);
+
+        return redirect()->route('products.index');
     }
 }

@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </div>
-            <a href="{{ route('products.add') }}">
+            <a href="{{ route('products.create') }}">
                 <x-primary-button class="mt-4">
                     {{ __('Add Product') }}
                 </x-primary-button>
